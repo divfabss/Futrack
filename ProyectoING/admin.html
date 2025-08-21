@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Futrack - Admin</title>
+  <link rel="stylesheet" href="/Proyecto/css/styles.css">
+  <link rel="stylesheet" href="/Proyecto/css/admin.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/index.html" class="logo">Futrack</a></h1>
+    <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+  </header>
+
+  <div class="container">
+    <h2>Panel de Administración</h2>
+    <p>Bienvenido <span id="adminName">Admin</span>, aquí puedes gestionar tus canchas y ver estadísticas.</p>
+
+    <!-- Estadísticas -->
+    <section class="stats">
+      <h3>Estadísticas generales &#128202</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h4>Reservas este mes &#128197</h4>
+          <p id="reservasMes">42</p>
+        </div>
+        <div class="stat-card">
+          <h4>Ingresos generados &#128200</h4>
+          <p id="ingresos">₡450,000</p>
+        </div>
+        <div class="stat-card">
+          <h4>Canchas activas</h4>
+          <p id="canchasActivas">1</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gestión de Canchas -->
+    <section class="canchas-admin">
+      <h3>Tus canchas</h3>
+      <div id="adminCanchas" class="grid"></div>
+    </section>
+  </div>
+
+  <script src="/Proyecto/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const usuario = JSON.parse(localStorage.getItem("usuario"));
+      if (!usuario || usuario.rol !== "admin") {
+        alert("Acceso no autorizado");
+        window.location.href = "/index.html";
+        return;
+      }
+
+      document.getElementById("adminName").textContent = usuario.nombre;
+
+      // Mostrar canchas "asignadas"
+      const adminCanchas = document.getElementById("adminCanchas");
+      adminCanchas.innerHTML = "";
+      const canchaAsignada = canchasDemo.find(c => c.nombre.includes("Sabana")); 
+      if (canchaAsignada) {
+        const div = document.createElement("div");
+        div.classList.add("card");
+        div.innerHTML = `
+          <img src="${canchaAsignada.img}" alt="Imagen de ${canchaAsignada.nombre}" onerror="this.src='/Proyecto/img/placeholder.png'">
+          <div class="card-body">
+            <h3>${canchaAsignada.nombre}</h3>
+            <p><b>Localidad:</b> ${canchaAsignada.localidad}</p>
+            <p><b>Jugadores:</b> ${canchaAsignada.jugadores}</p>
+            <p><b>Precio:</b> ₡${canchaAsignada.precio.toLocaleString()}/hora</p>
+          </div>
+        `;
+        adminCanchas.appendChild(div);
+      }
+    });
+  </script>
+
+<!-- Icono de mensajes -->
+<div class="mensaje-icono" onclick="toggleMensajes()">
+  💬
+  <span id="contadorMensajes">3</span>
+</div>
+
+<!-- Panel de mensajes -->
+<div class="mensajes-panel" id="mensajesPanel">
+  <div class="mensajes-header">
+    📩 Mensajes de clientes
+    <button onclick="toggleMensajes()">✖</button>
+  </div>
+  <div class="mensajes-body" id="mensajesLista">
+    <div class="mensaje" onclick="abrirChat('María')">
+      <b>María:</b> ¿La cancha Sabana tiene parqueo?
+    </div>
+    <div class="mensaje" onclick="abrirChat('Carlos')">
+      <b>Carlos:</b> ¿Se puede reservar por 3 horas seguidas?
+    </div>
+    <div class="mensaje" onclick="abrirChat('Ana')">
+      <b>Ana:</b> ¿Hay descuentos por equipos?
+    </div>
+  </div>
+</div>
+
+<!-- Panel de chat con cliente -->
+<div class="chat-panel" id="chatPanel">
+  <div class="mensajes-header">
+    <span id="chatTitulo">Chat con Cliente</span>
+    <button onclick="cerrarChat()">✖</button>
+  </div>
+  <div class="mensajes-body" id="chatBody">
+    <!-- Aquí se insertarán mensajes -->
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatMensaje" placeholder="Escribe tu respuesta...">
+    <button onclick="enviarRespuesta()">Enviar</button>
+  </div>
+</div>
+
+<script>
+function toggleMensajes() {
+  const panel = document.getElementById("mensajesPanel");
+  const contador = document.getElementById("contadorMensajes");
+  panel.style.display = (panel.style.display === "flex") ? "none" : "flex";
+
+  // Si abre, limpiar contador (simulación de mensajes leídos)
+  if (panel.style.display === "flex") {
+    contador.style.display = "none";
+  }
+}
+let clienteActual = null;
+
+function abrirChat(cliente) {
+  clienteActual = cliente;
+  document.getElementById("chatTitulo").textContent = "Chat con " + cliente;
+  document.getElementById("chatBody").innerHTML = `
+    <div class="mensaje-cliente"><b>${cliente}:</b> Hola, quería más información de la cancha.</div>
+  `;
+  document.getElementById("mensajesPanel").style.display = "none";
+  document.getElementById("chatPanel").style.display = "flex";
+}
+
+function cerrarChat() {
+  document.getElementById("chatPanel").style.display = "none";
+  document.getElementById("mensajesPanel").style.display = "flex";
+}
+
+function enviarRespuesta() {
+  const input = document.getElementById("chatMensaje");
+  const mensaje = input.value.trim();
+  if (!mensaje) return;
+
+  const chatBody = document.getElementById("chatBody");
+  const div = document.createElement("div");
+  div.classList.add("mensaje-admin");
+  div.textContent = mensaje;
+  chatBody.appendChild(div);
+
+  input.value = "";
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>

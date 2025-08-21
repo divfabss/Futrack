@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pago - Futrack</title>
+  <link rel="stylesheet" href="/Proyecto/css/styles.css">
+  <link rel="stylesheet" href="/Proyecto/css/reservacion.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/canchas.html" class="logo">Futrack</a></h1>
+  </header>
+
+  <div class="container" id="detallePago"></div>
+
+  <script src="/Proyecto/js/app.js"></script>
+  <script>
+    const canchas = [
+      {id:1, nombre:"Cancha Sabana", localidad:"Sabana", jugadores:11, precio:10000, img:"/Proyecto/img/1.png"},
+      {id:2, nombre:"Cancha Heredia", localidad:"Heredia", jugadores:22, precio:15000, img:"/Proyecto/img/2.png"},
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get("id"));
+      const fecha = params.get("fecha");
+      const cancha = canchas.find(c => c.id === id);
+
+      if (cancha) {
+        document.getElementById("detallePago").innerHTML = `
+          <h2>Confirmar Reserva</h2>
+          <img src="${cancha.img}" alt="${cancha.nombre}" style="width:100%;max-height:250px;object-fit:cover;border-radius:8px;">
+          <p><b>Cancha:</b> ${cancha.nombre}</p>
+          <p><b>Localidad:</b> ${cancha.localidad}</p>
+          <p><b>Fecha:</b> ${fecha}</p>
+          <p><b>Precio:</b> ₡${cancha.precio.toLocaleString()}/hora</p>
+
+          <h3>Selecciona método de pago:</h3>
+          <button class="btn-pago" onclick="confirmarPago('SINPE')">SINPE</button>
+          <button class="btn-pago" onclick="confirmarPago('Tarjeta')">Tarjeta de Crédito</button>
+        `;
+      }
+    });
+
+    function confirmarPago(metodo) {
+      alert("Pago realizado con éxito mediante " + metodo);
+      window.location.href = "canchas.html";
+    }
+  </script>
+
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header" onclick="toggleChat()">
+    💬 Preguntas Frecuentes:
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="mensaje otro"><b>1:</b> ¿Se puede pagar por transferencia?</div>
+    <div class="mensaje otro"><b>2:</b> ¿El SINPE puede estar a nombre de otra persona?</div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+    <button onclick="enviarMensaje()">Enviar</button>
+  </div>
+</div>
+
+<script>
+function toggleChat() {
+  const body = document.getElementById("chatBody");
+  body.style.display = (body.style.display === "none") ? "block" : "none";
+}
+
+function enviarMensaje() {
+  const input = document.getElementById("chatInput");
+  const mensaje = input.value.trim();
+  if (mensaje) {
+    const chatBody = document.getElementById("chatBody");
+    const div = document.createElement("div");
+    div.classList.add("mensaje", "propio");
+    div.innerHTML = `<b>Tú:</b> ${mensaje}`;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    input.value = "";
+  }
+}
+</script>
+</body>
+</html>

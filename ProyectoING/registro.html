@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Futrack - Registro</title>
+  <link rel="stylesheet" href="/Proyecto/css/styles.css">
+  <link rel="stylesheet" href="/Proyecto/css/login.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/index.html" class="logo">Futrack</a></h1>
+  </header>
+  <div class="container">
+    <h2>Registro</h2>
+    <form id="registroForm">
+      <div class="input-icon">
+        <span>👤</span>
+        <input type="text" id="nombre" placeholder="Nombre Completo" required>
+      </div>
+      <div class="input-icon">
+        <span>📧</span>
+        <input type="email" id="correo" placeholder="Correo Electrónico" required>
+      </div>
+      <div class="input-icon">
+        <span>🔒</span>
+        <input type="password" id="contrasena" placeholder="Contraseña" required>
+      </div>
+      <button type="button" class="btn-primary" onclick="window.location.href='canchas.html'">Registrarme</button>
+    </form>
+    <p>¿Ya tienes cuenta? <a href="/index.html">Inicia Sesión</a></p>
+  </div>
+</body>
+</html>

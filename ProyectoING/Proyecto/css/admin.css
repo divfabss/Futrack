@@ -1,0 +1,194 @@
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.stats {
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: #2b6cb0;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.stat-card h4 {
+  margin: 0.5rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.logout-btn{
+  background: #e2e8f0;
+  color: #000000;
+}
+
+.logout-btn:hover{
+  background: #e2e8f0;
+  color: #000000;
+}
+
+/* ========= ICONO DE MENSAJES ========= */
+.mensaje-icono {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  background: #2b6cb0;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.mensaje-icono:hover {
+  transform: scale(1.1);
+}
+
+.mensaje-icono span {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+}
+
+/* ========= PANEL DE MENSAJES ========= */
+.mensajes-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 320px;
+  max-height: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mensajes-header {
+  background: #2b6cb0;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mensajes-body {
+  padding: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.mensaje {
+  padding: 10px;
+  margin-bottom: 8px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mensaje:hover {
+  background: #e2e8f0;
+}
+
+/* ========= PANEL DE CHAT ========= */
+.chat-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 320px;
+  height: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  border: none;
+  background: #2b6cb0;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.chat-input button:hover {
+  background: #1e4f82;
+}
+
+/* ========= MENSAJES EN EL CHAT ========= */
+.mensaje-cliente {
+  background: #f1f1f1;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.mensaje-admin {
+  background: #2b6cb0;
+  color: white;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 8px;
+  text-align: right;
+}

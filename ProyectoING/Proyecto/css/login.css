@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(-45deg, #2b6cb0, #4a90e2, #1a365d, #6cb0ff);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  color: #333;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 400px;
+  margin: 5rem auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h2 {
+  color: #2b6cb0;
+  margin-bottom: 1.5rem;
+}
+
+.input-icon {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-icon span {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+.input-icon input {
+  width: 90%;
+  padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+}
+
+.input-icon input:focus {
+  border: 1px solid #2b6cb0;
+  box-shadow: 0 0 8px rgba(43,108,176,0.3);
+}
+
+.btn-primary {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: none;
+  background: #2b6cb0;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #1a4f85;
+}
+
+p {
+  margin-top: 1.5rem;
+}

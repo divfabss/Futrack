@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Futrack - Canchas</title>
+  <link rel="stylesheet" href="/Proyecto/css/styles.css">
+  <link rel="stylesheet" href="/Proyecto/css/canchas.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/canchas.html" class="logo">Futrack</a></h1>
+    <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+  </header>
+
+  <div class="container">
+    <h2>Bienvenido a <span class="resaltado">Futrack</span></h2>
+    <p>Busca y reserva tu cancha favorita</p>
+
+    <div class="search-bar">
+      <input classtype="text" id="search" class="input" placeholder="Buscar por localidad &#128269">
+      <button class="Canchas"onclick="buscarCanchas()">Buscar</button>
+      <button onclick="limpiarBusqueda()" class="btn-secundario">Limpiar</button>
+    </div>
+
+    <section>
+      <h3>Canchas destacadas:</h3>
+      <div id="canchasDestacadas" class="grid"></div>
+    </section>
+
+    <section>
+      <h3>Canchas cercanas:</h3>
+      <div id="canchasCercanas" class="grid"></div>
+    </section>
+  </div>
+
+  <script src="/Proyecto/js/app.js"></script>
+</body>
+</html>
